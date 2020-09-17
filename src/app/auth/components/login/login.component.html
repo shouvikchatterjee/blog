@@ -1,0 +1,58 @@
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <form
+        #loginForm="ngForm"
+        (ngSubmit)="onSubmit()"
+        novalidate>
+        <h3 class="text-success pb-2">Login</h3>
+        <div class="form-group">
+            <label>Username</label>
+            <input
+                [(ngModel)]="userModal.userName"
+                #username="ngModel"
+                name="username"
+                (focus)="resetErrorMessage()"
+                [ngClass]="{'is-invalid': (username.touched || loginForm.submitted) && username.errors?.required}"
+                type="text"
+                class="form-control"
+                required>
+            <small
+                *ngIf="(username.touched || loginForm.submitted) && username.errors?.required"
+                class="form-text text-danger">Username is required.</small>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input
+                [(ngModel)]="userModal.password"
+                #password="ngModel"
+                name="password"
+                (focus)="resetErrorMessage()"
+                [ngClass]="{'is-invalid': (password.touched || loginForm.submitted) && password.errors?.required}"
+                type="password"
+                class="form-control"
+                required>
+            <small
+                *ngIf="(password.touched || loginForm.submitted) &&
+                password.errors?.required"
+                class="form-text text-danger">Password is required.</small>
+        </div>
+        <small
+            *ngIf="errorMsg"
+            class="form-text text-danger">
+            {{errorMsg}}
+        </small>
+        <button
+            [disabled]="loginForm.form.invalid"
+            type="submit"
+            class="btn btn-success mt-2">
+            <i class="material-icons">person</i>
+            Signin
+        </button>
+        <button
+            (click)="onSignUp()"
+            type="button"
+            class="btn btn-light ml-2 mt-2">
+            <i class="material-icons">perm_identity</i>
+            Signup
+        </button>
+    </form>
+</div>

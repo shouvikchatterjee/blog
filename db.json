@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "userName": "admin",
+      "password": "admin",
+      "role": "admin",
+      "permissions": {
+        "add": true,
+        "edit": true,
+        "delete": true
+      }
+    },
+    {
+      "id": 2,
+      "userName": "user1",
+      "password": "user1",
+      "role": "user",
+      "permissions": {
+        "add": false,
+        "edit": true,
+        "delete": true
+      }
+    },
+    {
+      "userName": "user2",
+      "password": "user2",
+      "role": "user",
+      "permissions": {
+        "add": true,
+        "edit": false,
+        "delete": true
+      },
+      "id": 3
+    }
+  ]
+}

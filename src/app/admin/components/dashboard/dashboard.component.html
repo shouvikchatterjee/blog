@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <h4 class="text-center my-3">User Details</h4>
+    <table
+        #userTable
+        class="table table-striped"
+        id="userTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Add</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td *ngIf="user.role === 'user'">{{user.id}}</td>
+                <td *ngIf="user.role === 'user'">{{user.userName}}</td>
+                <td *ngIf="user.role === 'user'">
+                    <input
+                        (change)="changePermission($event.target.checked,user.id,'add')"
+                        [checked]="user.permissions.add"
+                        type="checkbox"
+                        class="form-check-input ml-2">
+                </td>
+                <td *ngIf="user.role === 'user'">
+                    <input
+                        (change)="changePermission($event.target.checked,user.id,'edit')"
+                        [checked]="user.permissions.edit"
+                        type="checkbox"
+                        class="form-check-input ml-2">
+                </td>
+                <td *ngIf="user.role === 'user'">
+                    <input
+                        (change)="changePermission($event.target.checked,user.id,'delete')"
+                        [checked]="user.permissions.delete"
+                        type="checkbox"
+                        class="form-check-input ml-2">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button
+        (click)="exportUsersAsPdf()"
+        type="button"
+        class="btn btn-success">
+        <i class="material-icons">picture_as_pdf</i>
+        Export as pdf
+    </button>
+    <button
+        (click)="exportUsersAsExcel()"
+        type="button"
+        class="btn btn-success ml-2">
+        <i class="material-icons">grid_on</i>
+        Export as excel
+    </button>
+</div>

@@ -1,0 +1,50 @@
+<div class="card h-100">
+    <div class="card-body">
+
+        <ng-container *ngIf="edit; else readOnly">
+            <input 
+                [(ngModel)]="data.title" 
+                type="text" 
+                class="form-control">
+            <textarea 
+                [(ngModel)]="data.body" 
+                class="form-control mt-2" 
+                rows="5">
+            </textarea>
+        </ng-container>
+
+        <ng-template #readOnly>
+            <h5>{{data.title}}</h5>
+            <p class="card-text">{{data.body}}</p>
+        </ng-template>
+
+        <div 
+            *ngIf="action"
+            class="row">
+            <div class="col-12 pt-2">
+                <button 
+                    *ngIf="!edit && action.edit"
+                    (click)="onEdit()" 
+                    type="button" 
+                    class="btn btn-outline-dark mr-2">
+                    <i class="material-icons">edit</i>
+                </button>
+                <button 
+                    *ngIf="edit"
+                    (click)="onSave()" 
+                    type="button" 
+                    class="btn btn-success mr-2">
+                    <i class="material-icons">save</i>
+                </button>
+                <button 
+                    *ngIf="action.delete"
+                    (click)="onDelete()" 
+                    type="button" 
+                    class="btn btn-outline-dark">
+                    <i class="material-icons">delete</i>
+                </button>                
+            </div>
+        </div>
+
+    </div>
+</div>
